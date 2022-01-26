@@ -1,12 +1,18 @@
+package schritt1;
+
+import schritt2.Torwart;
+
 public class Programm {
 
     public static void main(String[] args) {
 
         Trainer trainer = new Trainer("\tUwe", 50, 6);
         Spieler spieler = new Spieler("\tWerner", 25, 30, 14, 5, 2);
+        Torwart torwart = new Torwart("\t Ulf", 22, 50,5,0);
 
         System.out.println(trainer);
         System.out.println(spieler);
+        System.out.println(torwart);
 
     }
 }
