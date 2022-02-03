@@ -49,7 +49,7 @@ public class Mannschaft {
         this.torwart = torwart;
     }
 
-    public ArrayList<Spieler> getSpielerliste() {
+    public ArrayList<Spieler> getSpielerListe() {
         return spielerliste;
     }
 

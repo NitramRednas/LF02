@@ -9,6 +9,7 @@ public class Spieler extends Person {
     private int motivation;
     private int tore;
 
+
     public Spieler(String name, int alter, int staerke, int torschuss, int motivation, int tore) {
         super(name, alter);
         this.staerke = staerke;
@@ -44,7 +45,7 @@ public class Spieler extends Person {
         this.tore = tore;
     }
 
-    public int getTore() {
+    public int AddTor() {
         return tore;
     }
 

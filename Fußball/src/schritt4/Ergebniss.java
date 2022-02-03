@@ -5,16 +5,13 @@ public class Ergebniss {
     private int toreHeim;
     private int toreGast;
 
-    Ergebniss ergebniss(int toreHeim, int toreGast){
-        this.toreHeim = toreHeim;
-        this.toreGast = toreGast;
-        return ergebniss(toreHeim, toreGast);
-    }
 
-    public void addtoreHeim(){
+
+    public void addToreHeim() {
         toreHeim++;
     }
-    public void addtoreGast(){
+
+    public void addToreGast() {
         toreGast++;
     }
 
@@ -27,5 +24,11 @@ public class Ergebniss {
         return toreGast;
     }
 
-
+    @Override
+    public String toString() {
+        return "Ergebniss{" +
+                "toreHeim=" + toreHeim +
+                ", toreGast=" + toreGast +
+                '}';
+    }
 }

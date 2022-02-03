@@ -1,7 +1,10 @@
 package schritt1;
 
 import schritt2.Torwart;
+import schritt4.Ergebniss;
 import schritt4.Mannschaft;
+import schritt4.Spiel;
+import schritt5.Gameplay;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,12 @@ public class Programm {
         gastspielerliste.add(spD);
 
         Mannschaft gast = new Mannschaft("Gast", gasttrainer, gasttorwart, gastspielerliste);
+
+        Ergebniss ergebniss = new Ergebniss();
+        ergebniss.addToreGast();
+        Spiel spiel = new Spiel(heim,gast,ergebniss);
+        Gameplay.spielen(spiel);
+        System.out.println(spiel);
 
 
     }
