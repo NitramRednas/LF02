@@ -5,12 +5,13 @@ import schritt4.Ergebniss;
 import schritt4.Mannschaft;
 import schritt4.Spiel;
 import schritt5.Gameplay;
+import schritt6.SpielAbbruchExeption;
 
 import java.util.ArrayList;
 
 public class Programm {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SpielAbbruchExeption {
 
 
 
@@ -48,11 +49,18 @@ public class Programm {
 
         Mannschaft gast = new Mannschaft("Gast", gasttrainer, gasttorwart, gastspielerliste);
 
+
+
         Ergebniss ergebniss = new Ergebniss();
         ergebniss.addToreGast();
         Spiel spiel = new Spiel(heim,gast,ergebniss);
-        Gameplay.spielen(spiel);
+        try {
+            Gameplay.spielen(spiel);
+        }catch (SpielAbbruchExeption e){
+            System.out.println(e.getMessage());
+        }
         System.out.println(spiel);
+
 
 
     }

@@ -4,6 +4,7 @@ import schritt1.Spieler;
 import schritt2.Torwart;
 import schritt4.Mannschaft;
 import schritt4.Spiel;
+import schritt6.SpielAbbruchExeption;
 
 import java.util.Random;
 
@@ -13,11 +14,26 @@ public class Gameplay {
     private static final int MAX_NACHSPIELZEIT = 5;
     private static final int MAX_DAUER_BIS_AKTION = 10;
 
+
+    private static boolean brecheSpielAb(){
+
+        boolean spiel = true;
+        int abbruch = 0;
+        Random random = new Random();
+        abbruch = abbruch + random.nextInt(1000);
+
+        if (abbruch == 0){
+            spiel = true;
+        }
+        else spiel = false;
+        return spiel;
+    }
+
     /**
      * Simuliert ein Spiel.
      * @param spiel Das zu spielende Spiel.
      */
-    public static void spielen(Spiel spiel) {
+    public static void spielen(Spiel spiel) throws SpielAbbruchExeption {
         Random random = new Random();
         Mannschaft offensiv;
         Mannschaft defensiv;
@@ -56,6 +72,9 @@ public class Gameplay {
             }
             else {
                 spiel.getSpielbericht().append(spielMinute + ": Schuss von " + schuetze.getName() + " gehalten.\n");
+            }
+            if (brecheSpielAb()){
+                throw new SpielAbbruchExeption(spielMinute);
             }
             // Zufällige Spielminute für nächste Aktion festlegen
             spielMinute = spielMinute + random.nextInt(MAX_DAUER_BIS_AKTION + 1);
