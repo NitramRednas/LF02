@@ -35,8 +35,9 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person\n" +
-                "Vorname:\t" + vorname +
-                "\nNachname:\t" + nachname;
+        return "Person" +
+                "\nVorname\t" + vorname +
+                "\nNachname\t" + nachname +
+                "\nAdresse: \t" + adresse;
     }
 }

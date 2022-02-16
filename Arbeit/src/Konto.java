@@ -47,18 +47,22 @@ public abstract class Konto {
 
     //Einzahlen Auszahlen
 
-    public void einzahlen() {
-        double betrag = 0;
+    public boolean einzahlen(double betrag) {
+        System.out.println("Es wurden  " + betrag + "  Auf ihr Konto eingezahlt");
         this.kontoStand = betrag + this.kontoStand;
+        System.out.println("Aktueller Kontostand:\t" + this.kontoStand);
+        return true;
     }
 
-    public boolean auszahlen() {
-        double betrag = 0;
+    public boolean auszahlen(double betrag) {
         this.kontoStand = this.kontoStand - betrag;
         boolean gedeckt = true;
         if (this.kontoStand < 0) {
             gedeckt = false;
+            System.out.println("Das Konto ist nicht gedeckt. Momentan haben Sie  " + kontoStand + "  Auf ihrem Konto" );
         } else {
+            System.out.println("Es wurden  " + betrag  + "  ausgezahlt. " +
+                               " Sie haben noch  " + kontoStand + "  auf dem Konto");
             return true;
         }return gedeckt;
     }
@@ -66,8 +70,8 @@ public abstract class Konto {
     @Override
     public String toString() {
         return "Konto\n" +
-                "Inhaber:\t" + inhaber + "\n" +
-                "KontoStand:\t" + kontoStand +
+                "Inhaber:\t" +"\n" +
+                "KontoStand:\t" + this.kontoStand +
                 "\nKreditLimit:\t" + kreditLimit +
                 "\nZinsGuthaben:\t" + zinsGuthaben;
     }

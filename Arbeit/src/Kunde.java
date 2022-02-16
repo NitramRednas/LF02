@@ -2,7 +2,7 @@ public class Kunde extends Person {
 
     private Mitarbeiter betreuer;
 
-    public Kunde(String vorname, String nachname){
+    public Kunde(String vorname, String nachname,Mitarbeiter betreuer){
        super(vorname, nachname);
     }
 
@@ -16,10 +16,7 @@ public class Kunde extends Person {
 
     @Override
     public String toString() {
-        return "Kunde\n" +
-                "Vorname:\t" + getVorname() +
-                "\nNachname:\t" + getNachname() +
-                "\nAdresse:\t" + getAdresse() +
-                "\nBeteuer:\t" + getBetreuer();
+        return "\nVorname:\t" + getVorname() +
+                "\nNachname:\t" + getNachname();
     }
 }

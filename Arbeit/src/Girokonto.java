@@ -17,9 +17,11 @@ public class Girokonto extends Konto {
 
     public boolean ueberweisen(double betrag, Girokonto girokonto) {
 
-        if (betrag > girokonto.getKontoStand()) {
+        if (girokonto.getKontoStand() > betrag) {
+            System.out.println("Sie sind zu arm für diese Überweisung");
             return false;
         } else {
+            System.out.println("Es wurden " + betrag + "  überwiesen");
             return true;
         }
     }
