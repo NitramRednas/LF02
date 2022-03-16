@@ -1,9 +1,8 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class Programm {
 
-    public static void PrintWriter(String vertrag) throws FileNotFoundException {
+    public static void printWriter(Kaufvertrag vertrag) throws FileNotFoundException {
         String datei = "H:/LF02/Printwriter/Kaufvertrag.txt";
         PrintWriter writer = new PrintWriter(datei);
         writer.println(vertrag);
@@ -11,7 +10,7 @@ public class Programm {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Ware ware = new Ware("Laptop", 250.0);
         ware.setBeschreibung("Super krasses Gaming-Laptop");
         ware.getBesonderheitenListe().add("Tasche");
@@ -30,10 +29,7 @@ public class Programm {
         Kaufvertrag vertrag = new Kaufvertrag(verkaeufer, kaeufer, ware);
         vertrag.setZahlungsModalitaeten("Privater Barverkauf");
 
-        PrintWriter(vertrag + "");
-
-        System.out.println(vertrag);
-
+        printWriter(vertrag);
 
 
     }
