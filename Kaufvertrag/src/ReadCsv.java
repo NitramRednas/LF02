@@ -9,40 +9,47 @@ public class ReadCsv {
 
         String datei = "H:/LF02/Printwriter/Kaufvertrag.csv";
         BufferedReader br = new BufferedReader(new FileReader(datei));
-
         String zeile;
+        String strasse = "";
+        Vertragspartner kaeufer = null;
+        Vertragspartner verkaeufer = null;
+
         while ((zeile = br.readLine()) != null) {
 
             String[] datensatz = zeile.split(";");
 
-            if (datensatz[0].equalsIgnoreCase("kaeufer")) {
-                String[] name = datensatz[1].split(" ");
-                Vertragspartner kaeufer = new Vertragspartner(name[0], name[1]);
-                String[] adresse = datensatz[2].split(" ");
-                String[] adresse1 = datensatz[3].split(" ");
+            String[] name = datensatz[1].split(" ");
 
-                String strasse = adresse[0];
-                String hausNr = adresse[adresse.length - 1];
-                String plz = adresse1[0];
-                String ort = adresse1[1];
-                Adresse adressekaeufer = new Adresse(strasse, hausNr, plz, ort);
+            String[] strasseHausNr = datensatz[2].split(" ");
 
+            String hausNr = strasseHausNr[strasseHausNr.length - 1];
+            for (int i = 0; i < strasseHausNr.length-1; i++) {
+                strasse += strasseHausNr[i] + " ";
             }
+            strasse = strasse.trim();
+
+            String[] plzOrt = datensatz[3].split(" ");
+
+            String ort = "";
+            String plz = plzOrt[1];
+            for (int i = 1; i < plzOrt.length; i++) {
+                ort = plzOrt[i] + " ";
+            }
+            ort = ort.trim();
+
+
+            if (datensatz[0].equalsIgnoreCase("kaeufer")) {
+                kaeufer = new Vertragspartner(name[0], name[1]);
+                kaeufer.setAdresse(new Adresse(strasse, hausNr, plz, ort));
+            }
+
             if (datensatz[0].equalsIgnoreCase("verkaeufer")) {
-                String[] name = datensatz[1].split(" ");
-                Vertragspartner verkaeufer = new Vertragspartner(name[0], name[1]);
-                String[] adresse = datensatz[2].split(" ");
-                String[] adresse1 = datensatz[3].split(" ");
-
-                String strasse = adresse[0];
-                String hausNr = adresse[adresse.length - 1];
-                String plz = adresse1[0];
-                String ort = adresse1[1];
-                Adresse adresseverkaeufer = new Adresse(strasse, hausNr, plz, ort);
-
-
+                verkaeufer = new Vertragspartner(name[0], name[1]);
+                verkaeufer.setAdresse(new Adresse(strasse, hausNr, plz, ort));
             }
 
 
         }
+
     }
+}
