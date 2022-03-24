@@ -15,6 +15,22 @@ public class Ware {
         maengel = new ArrayList<String>();
     }
 
+    public ArrayList<String> getBesonderheiten() {
+        return besonderheiten;
+    }
+
+    public ArrayList<String> getMaengel() {
+        return maengel;
+    }
+
+    public void setBesonderheiten(ArrayList<String> besonderheiten) {
+        this.besonderheiten = besonderheiten;
+    }
+
+    public void setMaengel(ArrayList<String> maengel) {
+        this.maengel = maengel;
+    }
+
     public String getBezeichnung() {
         return bezeichnung;
     }
@@ -60,8 +76,8 @@ public class Ware {
         return "Ware\n" +
                 "Bezeichnung:\t" + bezeichnung + "\n" +
                 "Beschreibung:\t" + beschreibung + "\n" +
-                "Preis:\t\t" + preis + "\n\n" +
+                "Preis:\t\t\t" + preis + "\n\n" +
                 "Besonderheiten\n" + besonderheiten + "\n\n" +
-                "Mängel\n" + maengel+"\n\n";
+                "Mängel\n" + maengel + "\n\n";
     }
 }

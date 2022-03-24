@@ -39,6 +39,8 @@ public class KaufvertragPdf {
 
         // Überschrift
         Paragraph p1 = new Paragraph("Kaufvertrag");
+        p1.setTextAlignment(TextAlignment.CENTER);
+        p1.setBackgroundColor(new DeviceRgb(150, 150, 150));
         p1.setFontSize(19);
         p1.add("\n");
         p1.add("\n");
@@ -56,7 +58,7 @@ public class KaufvertragPdf {
         Paragraph p3 = new Paragraph("Klaus Brandt");
         p3.setFontColor(new DeviceRgb(75, 25, 100));
         p3.setFontSize(12);
-        p3.add("\nWurstallee 23a" + "\t" + "\t" + "28199 Bremen");
+        p3.add("\nWurstallee 23a" + "\t" + "\t" + "\t" + "28199 Bremen");
         p3.add("\n");
         p3.add("\n");
         document.add(p3);
@@ -121,8 +123,14 @@ public class KaufvertragPdf {
         //     table.addCell("");
         // }
 
-
         document.add(table);
+
+        Paragraph p6 = new Paragraph(" ");
+        p6.setBackgroundColor(new DeviceRgb(150, 150, 150));
+        p6.setFontSize(19);
+        p6.add("\n");
+        p6.add("\n");
+        document.add(p6);
 
         document.close();
 

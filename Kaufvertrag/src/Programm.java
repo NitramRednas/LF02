@@ -55,6 +55,9 @@ public class Programm {
         printWriter(vertrag);
         printCsv(vertrag);
 
+        System.out.println(vertrag);
+        System.out.println(verkaeufer.getAdresse());
+        System.out.println(kaeufer.getAdresse());
 
     }
 
