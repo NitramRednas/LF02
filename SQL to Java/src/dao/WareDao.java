@@ -3,6 +3,7 @@ package dao;
 import bussinesObjects.Ware;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class WareDao {
 
@@ -15,29 +16,21 @@ public class WareDao {
     }
 
     /**
-
      * Liest eine Ware auf basis seiner Warennummer
-
-     * @param warenNr Die Ausweisnummer
-
+     *
+     *
      * @return Der Gewünschte Vertragspartner
-
      */
 
 
-
-    public Ware read(String warenNr){
-
-        Ware ware = null;
+    public ArrayList<Ware> read() {
 
         Connection connection = null;
 
         PreparedStatement preparedStatement = null;
 
-
-
+        ArrayList<Ware> warenArraylist = new ArrayList<>();
         // Verbindung zu Datenbank Herstellen
-
 
 
         try {
@@ -48,12 +41,9 @@ public class WareDao {
 
             //SQL-Abfrage erstellen
 
-            String sql = "SELECT * From Ware WHERE warenNr = ?";
+            String sql = "SELECT * From Ware";
 
             preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1,warenNr);
-
 
 
             //SQL-Abfrage ausführen
@@ -61,39 +51,60 @@ public class WareDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
 
-
             //Zeiger auf den ersten Datensatz setzen
 
-            resultSet.next();
+
+            while (resultSet.next()) {
 
 
 
-            //ResulSet auswerten
+                //ResulSet auswerten
 
-            String Nr = resultSet.getString("warenNr");
-            String bezeichnung = resultSet.getString("bezeichnung");
-            String beschreibung = resultSet.getString("beschreibung");
-            double preis = resultSet.getDouble("preis");
-            String besonderheiten = resultSet.getString("besonderheiten");
-            String maengel = resultSet.getString("maengel");
+                Integer Nr = resultSet.getInt("warenNr");
+                String bezeichnung = resultSet.getString("bezeichnung");
+                String beschreibung = resultSet.getString("beschreibung");
+                double preis = resultSet.getDouble("preis");
+                String[] besonderheiten = resultSet.getString("besonderheiten").split(";");
+                String[] maengel = resultSet.getString("maengel").split(";");
 
 
-            //Vertragsprtner ertselle
+                //Ware ertsellen
 
-            ware = new Ware(bezeichnung,preis);
+                Ware ware = new Ware(bezeichnung, preis);
 
-            ware.setBezeichnung(bezeichnung);
+                ware.setWarenNr(Nr);
 
-            ware.setPreis(preis);
+                ware.setBezeichnung(bezeichnung);
 
-            ware.setBeschreibung(beschreibung);
+                ware.setPreis(preis);
 
+                ware.setBeschreibung(beschreibung);
+
+                ArrayList<String> besonderheitenListe = new ArrayList<>();
+
+                for (String s : besonderheiten) {
+                    besonderheitenListe.add(s.trim());
+                }
+
+                ware.setBesonderheitenListe(besonderheitenListe);
+
+
+                ArrayList<String> maengelListe = new ArrayList<>();
+
+                for (String s : maengel) {
+                    maengelListe.add(s.trim());
+                }
+
+                ware.setMaengelListe(maengelListe);
+
+                warenArraylist.add(ware);
+            }
 
         } catch (SQLException e) {
 
             e.printStackTrace();
 
-        }finally {
+        } finally {
 
             try {
 
@@ -107,7 +118,7 @@ public class WareDao {
 
         }
 
-        return ware;
+        return warenArraylist;
 
     }
 
