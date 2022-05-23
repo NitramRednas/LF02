@@ -37,7 +37,6 @@ public class VertragspartnerDao {
         Vertragspartner vertragspartner = null;
         connection = null;
         PreparedStatement preparedStatement = null;
-        // Verbindung zu Datenbank Herstellen
 
         try {
             //SQL-Abfrage erstellen
@@ -47,7 +46,6 @@ public class VertragspartnerDao {
             //SQL-Abfrage ausführen
             ResultSet resultSet = preparedStatement.executeQuery();
             vertragspartner = vertragspartnerlesen(resultSet);
-            //Vertragsprtner ertselle
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +53,6 @@ public class VertragspartnerDao {
 
         return vertragspartner;
     }
-
 
     public ArrayList<Vertragspartner> read() {
 
@@ -110,6 +107,32 @@ public class VertragspartnerDao {
         vertragspartner.setAdresse(new Adresse(strasse, hausNr, plz, ort));
 
         return vertragspartner;
+    }
+
+    public void delete(String nr) {
+
+        connection = null;
+        PreparedStatement preparedStatement = null;
+
+
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "DELETE From vertragspartner WHERE ausweisNr = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nr);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                connection.close();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
