@@ -18,10 +18,7 @@ public class Programm {
         ArrayList<Vertragspartner> vertragspartnerArrayList = new ArrayList<>();
 
         vertragspartnerArrayList = vertragspartnerDao.read();
-
         System.out.println(vertragspartnerArrayList);
-
-
 
     }
 
