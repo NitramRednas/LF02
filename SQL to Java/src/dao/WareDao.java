@@ -109,7 +109,6 @@ public class WareDao {
             //Zeiger auf den ersten Datensatz setzen
             resultSet.next();
 
-
             ware = createObjects(resultSet);
 
         } catch (SQLException e) {
@@ -156,6 +155,45 @@ public class WareDao {
         }
 
         return ware;
+    }
+
+    public String mapListToString(ArrayList<String> arrayList)throws SQLException{
+        String liste = "";
+      for (String m : arrayList){
+          liste += m + "; ";
+      }
+      return liste;
+    }
+
+
+    public void insert(Ware ware) throws SQLException{
+
+        connection = null;
+
+        try{
+            connection = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "INSERT INTO Ware(Bezeichnung,Beschreibung,  Preis, Besonderheiten, Maengel)"
+                    + "VALUES (?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, ware.getBezeichnung());
+            preparedStatement.setString(2, ware.getBeschreibung());
+            preparedStatement.setDouble(3, ware.getPreis());
+            preparedStatement.setString(4, mapListToString(ware.getBesonderheitenListe()));
+            preparedStatement.setString(5, mapListToString(ware.getMaengelListe()));
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        }
+
     }
 }
 
