@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GameDao {
 
     private final String CLASSNAME = "org.sqlite.JDBC";
-    private final String CONNECTIONSTRING = "jdbc:Sqlite:SQLite/Games.db";
+    private final String CONNECTIONSTRING = "jdbc:Sqlite:Games/src/data/Games.db";
 
    public GameDao() throws ClassNotFoundException {
        Class.forName(CLASSNAME);
@@ -73,10 +73,10 @@ public class GameDao {
 
     private Games gameslesen(ResultSet resultSet) throws SQLException{
 
-        String nr = resultSet.getString("Nummer");
+        int nr = resultSet.getInt("Nummer");
         String titel = resultSet.getString("Titel");
         String genre = resultSet.getString("Genre");
-        String preis = resultSet.getString("Preis");
+        double preis = resultSet.getDouble("Preis");
 
         Games games = new Games(nr,titel,genre,preis);
         return games;
@@ -113,10 +113,10 @@ public class GameDao {
             connection = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "Insert into Games values(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,games.getNummer());
+            preparedStatement.setInt(1,games.getNummer());
             preparedStatement.setString(2, games.getTitel());
             preparedStatement.setString(3, games.getGenre());
-            preparedStatement.setString(4, games.getPreis());
+            preparedStatement.setDouble(4, games.getPreis());
 
             preparedStatement.executeUpdate();
 
@@ -141,10 +141,10 @@ public class GameDao {
             connection = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "UPDATE Games SET Nummer = ? ,Titel = ?, Genre = ?, Preis = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,games.getNummer());
+            preparedStatement.setInt(1,games.getNummer());
             preparedStatement.setString(2, games.getTitel());
             preparedStatement.setString(3, games.getGenre());
-            preparedStatement.setString(4, games.getPreis());
+            preparedStatement.setDouble(4, games.getPreis());
 
             preparedStatement.executeUpdate();
 

@@ -2,23 +2,23 @@ package bussinesObjects;
 
 public class Games {
 
-    public String Nummer;
+    public int Nummer;
     public String Titel;
     public String Genre;
-    public String Preis;
+    public double Preis;
 
-    public Games(String Nummer, String Titel, String Genre, String Preis){
+    public Games(int Nummer, String Titel, String Genre, double Preis){
         this.Nummer = Nummer;
         this.Titel = Titel;
         this.Genre = Genre;
         this.Preis = Preis;
     }
 
-    public String getNummer() {
+    public int getNummer() {
         return Nummer;
     }
 
-    public String getPreis() {
+    public double getPreis() {
         return Preis;
     }
 
@@ -34,11 +34,11 @@ public class Games {
         Genre = genre;
     }
 
-    public void setNummer(String nummer) {
+    public void setNummer(int nummer) {
         Nummer = nummer;
     }
 
-    public void setPreis(String preis) {
+    public void setPreis(double preis) {
         Preis = preis;
     }
 
