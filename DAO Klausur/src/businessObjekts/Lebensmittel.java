@@ -11,7 +11,6 @@ public class Lebensmittel {
 
     public Lebensmittel lebensmittel(int id,String name, double gewicht, double preis, String nuesse, String milch){
 
-        Lebensmittel lebensmittel = new Lebensmittel();
         this.id = id;
         this.name = name;
         this.gewicht = gewicht;
@@ -19,7 +18,7 @@ public class Lebensmittel {
         this.nuesse = nuesse;
         this.milch = milch;
 
-        return lebensmittel;
+        return lebensmittel(id, name, gewicht, preis, nuesse, milch);
     }
 
     public double getGewicht() {

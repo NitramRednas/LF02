@@ -13,7 +13,7 @@ public class LebensmittelDao {
     }
 
     private final String CLASSNAME = "org.sqlite.JDBC";
-    private final String CONNECTIONSTRING = "jdbc:sqlite:DAO Klausur/src/data/Waren.db";
+    private final String CONNECTIONSTRING = "jdbc:sqlite:LF02/DAO_Sander_Martin/src/data/Waren.db";
 
     Connection connection;
     PreparedStatement preparedStatement = null;
@@ -71,7 +71,7 @@ public class LebensmittelDao {
         Lebensmittel lebensmittel = new Lebensmittel();
         ArrayList<Lebensmittel> lebensmittelArrayList = new ArrayList<>();
         connection = DriverManager.getConnection(CONNECTIONSTRING);
-        String sql = "SELECT * FROM Lebensmittel WHERE 'Milch' IS NULL AND 'Nuesse' IS NULL";
+        String sql = "SELECT * FROM Lebensmittel WHERE 'Milch' = 'Nein' AND 'Nuesse' ='Nein'";
         preparedStatement = connection.prepareStatement(sql);
 
         ResultSet resultSet = preparedStatement.executeQuery();
